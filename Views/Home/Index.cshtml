@@ -1,0 +1,33 @@
+﻿@model BackgroundEmailSenderSample.Models.Contact
+<h2>Contact us</h2>
+<p>Fill in the form to get in touch with us.</p>
+<form asp-controller="Home" asp-action="SendMail" method="post">
+  <div class="form-group">
+    <label asp-for="Name"></label>
+    <input type="text" asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" />
+  </div>
+  <div class="form-group">
+    <label asp-for="Email"></label>
+    <input type="text" asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" />
+  </div>
+  <div class="form-group">
+    <label asp-for="Source"></label>
+    <select type="text" asp-for="Source" class="form-control">
+      <option>advertising</option>
+      <option>a search engine</option>
+      <option>a friend</option>
+    </select>
+    <span asp-validation-for="Source" />
+  </div>
+  <div class="form-group">
+    <label asp-for="Request"></label>
+    <textarea asp-for="Request" class="form-control"></textarea>
+    <span asp-validation-for="Request" />
+  </div>
+  <div class="form-group">
+    <div asp-validation-summary="All"></div>
+    <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-send"></i> Send</button>
+  </div>
+</form>
