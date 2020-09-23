@@ -62,7 +62,7 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-    @Html.Partial("_ValidationScriptsPartial.cshtml")
+    <partial name="_ValidationScripts"></partial>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿@model BackgroundEmailSenderSample.Models.Contact
+﻿@model BackgroundEmailSenderSample.Models.InputModels.ContactInputModel
 <h2>Contact us</h2>
 <p>Fill in the form to get in touch with us.</p>
 <form asp-controller="Home" asp-action="SendMail" method="post">
@@ -22,9 +22,9 @@
     <span asp-validation-for="Source" />
   </div>
   <div class="form-group">
-    <label asp-for="Request"></label>
-    <textarea asp-for="Request" class="form-control"></textarea>
-    <span asp-validation-for="Request" />
+    <label asp-for="Message"></label>
+    <textarea asp-for="Message" class="form-control"></textarea>
+    <span asp-validation-for="Message" />
   </div>
   <div class="form-group">
     <div asp-validation-summary="All"></div>

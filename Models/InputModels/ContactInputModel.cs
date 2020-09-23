@@ -1,8 +1,9 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace BackgroundEmailSenderSample.Models
+namespace BackgroundEmailSenderSample.Models.InputModels
 {
-    public class Contact
+    public class ContactInputModel
     {
         //Mandatory, 30 chars maximum
         [Required, StringLength(30), Display(Name = "Your first and last name")]
@@ -17,6 +18,15 @@ namespace BackgroundEmailSenderSample.Models
 
         //Mandatory, 1000 chars maximum
         [Required, StringLength(1000), Display(Name = "Your message to us")]
-        public string Request { get; set; }
+        public string Message { get; set; }
+
+        public string ToHtmlMessage()
+        {
+            return $@"<html><body>
+            <p>Message from: {Name}</p>
+            <p>Heard about us from: {Source}</p>
+            <p>Message: {Message}</p>
+            </body></html>";
+        }
     }
 }

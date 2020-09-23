@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using BackgroundEmailSenderSample.Models.InputModels;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using BackgroundEmailSenderSample.Models;
 using Microsoft.Extensions.Configuration;
-using BackgroundEmailSenderSample.Services;
 
 namespace BackgroundEmailSenderSample.Controllers
 {
@@ -19,19 +15,12 @@ namespace BackgroundEmailSenderSample.Controllers
 
 
         [HttpPost]
-        public IActionResult SendMail(
-            [FromServices] IEmailSender emailSender,
-            [FromServices] IConfiguration configuration,
-            Contact contact) 
+        public async Task<IActionResult> SendMail(ContactInputModel inputModel, [FromServices] IEmailSender emailSender) 
         {
-            emailSender.Post(
-                subject: "Contact request", 
-                body: $"{contact.Name} ({contact.Email}) has sent you this message: {contact.Request}. He knew about us from: {contact.Source}",
-                sender: contact.Email,
-                recipients: configuration["AdminContact"]);
+            await emailSender.SendEmailAsync(inputModel.Email, "Request from our website", inputModel.ToHtmlMessage());
             return RedirectToAction(nameof(ThankYou));
         }
-
+        
         public IActionResult ThankYou() {
             return View();
         }
