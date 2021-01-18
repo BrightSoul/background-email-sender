@@ -10,7 +10,11 @@ This project uses the `MailKit` package to deliver emails. The Hosted Service im
 
 ## Warning
 This code is **NOT production-ready**. It just illustrates how to implement and register a Hosted Service for sending e-mails in background. Some messages might be lost when the application is restarted since it does not implement a persistent storage (e.g. a database).
-Moreover, it does NOT deliver email messages in parallel or throttle them to prevent reaching a quota.
+
+ > See this fork by AngeloDotNet for a more complete implementation using persistent storage (Sqlite).
+ > https://github.com/AngeloDotNet/BackgroundEmailSender
+
+Moreover, this project it does _not_ deliver email messages in parallel or throttle them to prevent reaching a quota.
 
 ## Getting started
 Edit the [appsettings.json](appsettings.json) file with your SMTP server data. Then, just run the application by typing `dotnet run`. The .NET Core SDK 3.1 (or greater) must be installed in your system. Fill in the form and hit the Send button.
